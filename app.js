@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require("dotenv").config();
+const helmet = require('helmet');
 // const bodyParser = require('body-parser');
 const routers = require("./routes/index");
 const handlerErrors = require("./middlewares/handlerErrors");
@@ -11,6 +12,8 @@ const { PORT = 3000 } = process.env;
 const app = express();
 // app.use(bodyParser.json()); // для собирания JSON-формата
 // app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
+
+app.use(helmet());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -3,13 +3,11 @@ const {
   patchUser,
   getCurrentUser,
 } = require("../controllers/users");
-// const {
-//   validationUpdateUser,
-//   validationUpdateAvatar,
-//   validationUserId,
-// } = require("../middlewares/validationUser");
+const {
+  validationUpdateUser,
+} = require("../middlewares/validationUser");
 
 router.get("/me", getCurrentUser);
-router.patch("/me", patchUser);
+router.patch("/me", validationUpdateUser, patchUser);
 
 module.exports = router;

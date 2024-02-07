@@ -1,16 +1,17 @@
-// const router = require("express").Router();
-const express = require('express');
-const router = express.Router();
+const router = require("express").Router();
 const {
   createUser,
   login,
 } = require("../controllers/users");
 const auth = require("../middlewares/auth");
-// const { validationCreateUser, validationLogin } = require("../middlewares/validationUser");
+const {
+  validationLogin,
+  validationCreateUser
+} = require("../middlewares/validationUser");
 const NotFoundError = require("../errors/not-found-err");
 
-router.post("/signup", createUser);
-router.post("/signin", login);
+router.post("/signup", validationCreateUser, createUser);
+router.post("/signin", validationLogin, login);
 router.use("/users", auth, require("./user"));
 router.use("/movies", auth, require("./movie"));
 
