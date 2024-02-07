@@ -11,9 +11,6 @@ const handlerErrors = require("./middlewares/handlerErrors");
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 минут
   max: 100, // лимит запросов 100
-  // keyGenerator: function (req) {
-  //   return req.user._id;
-  // },
   handler: function (req, res, next) {
     res.status(429).json({
       message: "Слишком много запросов, пожалуйста, повторите попытку позже.",
@@ -26,8 +23,6 @@ const limiter = rateLimit({
 const { PORT = 3000 } = process.env;
 
 const app = express();
-// app.use(bodyParser.json()); // для собирания JSON-формата
-// app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
 app.use(helmet());
 
@@ -45,11 +40,11 @@ app.use(handlerErrors); //центральный обработчик ошибо
 
 mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb', {
 }).then(() => {
-  console.log("'соединение с базой установлено");
+  console.log("соединение с базой установлено");
 })
   .catch((err) => {
     console.log(`DB connection error:${err}`);
-    console.log("'соединение с базой прервано");
+    console.log("соединение с базой прервано");
   });
 
 app.listen(PORT, () => {
