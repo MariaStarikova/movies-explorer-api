@@ -43,7 +43,7 @@ app.use(errorLogger); //логгер ошибок
 app.use(errors());
 app.use(handlerErrors); //центральный обработчик ошибок
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
+mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb', {
 }).then(() => {
   console.log("'соединение с базой установлено");
 })
