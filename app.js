@@ -11,9 +11,9 @@ const handlerErrors = require("./middlewares/handlerErrors");
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 минут
   max: 100, // лимит запросов 100
-  keyGenerator: function (req) {
-    return req.user._id;
-  },
+  // keyGenerator: function (req) {
+  //   return req.user._id;
+  // },
   handler: function (req, res, next) {
     res.status(429).json({
       message: "Слишком много запросов, пожалуйста, повторите попытку позже.",
