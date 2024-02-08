@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema(
   {
@@ -29,7 +29,7 @@ const movieSchema = new mongoose.Schema(
         validator(image) {
           return /http[s]?:\/\/(www.)?[\S]+\.[a-z]+[\S]*/gi.test(image);
         },
-        message: "Некорректный формат URL",
+        message: 'Некорректный формат URL',
       },
     },
     trailerLink: {
@@ -39,7 +39,7 @@ const movieSchema = new mongoose.Schema(
         validator(link) {
           return /http[s]?:\/\/(www.)?[\S]+\.[a-z]+[\S]*/gi.test(link);
         },
-        message: "Некорректный формат URL",
+        message: 'Некорректный формат URL',
       },
     },
     thumbnail: {
@@ -49,13 +49,13 @@ const movieSchema = new mongoose.Schema(
         validator(link) {
           return /http[s]?:\/\/(www.)?[\S]+\.[a-z]+[\S]*/gi.test(link);
         },
-        message: "Некорректный формат URL",
+        message: 'Некорректный формат URL',
       },
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "user",
+      ref: 'user',
     },
     movieId: {
       type: Number,
@@ -75,4 +75,4 @@ const movieSchema = new mongoose.Schema(
   },
 );
 
-module.exports = mongoose.model("movie", movieSchema);
+module.exports = mongoose.model('movie', movieSchema);

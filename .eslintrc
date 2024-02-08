@@ -3,7 +3,7 @@
       "browser": true,
       "es2021": true
   },
-  "extends": "eslint:recommended",
+  "extends": "airbnb-base",
   "overrides": [
       {
           "env": {
@@ -24,7 +24,8 @@
   "rules": {
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "import/order": "off",
-    "no-console": 0
+    "no-console": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}]
   },
   "globals": {
     "require": true,
@@ -32,4 +33,3 @@
     "process": true
 }
 }
-

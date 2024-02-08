@@ -1,17 +1,29 @@
-const Movie = require("../models/movie");
-const BadRequestError = require("../errors/bad-request-err");
-const NotFoundError = require("../errors/not-found-err");
-const ForbiddenError = require("../errors/forbidden-err");
+const Movie = require('../models/movie');
+const BadRequestError = require('../errors/bad-request-err');
+const NotFoundError = require('../errors/not-found-err');
+const ForbiddenError = require('../errors/forbidden-err');
 
 module.exports.getMovies = (req, res, next) => {
   const owner = req.user._id;
-  Movie.find({owner})
+  Movie.find({ owner })
     .then((movies) => res.send({ movies }))
     .catch(next);
 };
 
 module.exports.postMovie = (req, res, next) => {
-  const { country, director, duration, year, description, image, trailerLink, thumbnail, movieId, nameRU, nameEN } = req.body;
+  const {
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN,
+  } = req.body;
 
   const newMovie = {
     country,
@@ -33,8 +45,8 @@ module.exports.postMovie = (req, res, next) => {
       res.status(201).send({ movie });
     })
     .catch((err) => {
-      if (err.name === "ValidationError") {
-        return next(new BadRequestError("Переданы некорректные данные при создании карточки."));
+      if (err.name === 'ValidationError') {
+        return next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
       }
       return next(err);
     });
@@ -46,16 +58,16 @@ module.exports.deleteMovie = (req, res, next) => {
 
   Movie.findById({ _id: movieId })
     .orFail(() => {
-      throw new NotFoundError("Передан несуществующий _id карточки.");
+      throw new NotFoundError('Передан несуществующий _id карточки.');
     })
     .then((movie) => {
       if (movie.owner.toString() !== userId) {
-        throw new ForbiddenError("У вас нет прав на удаление этой карточки.");
+        throw new ForbiddenError('У вас нет прав на удаление этой карточки.');
       }
       return Movie.findByIdAndDelete(movie._id);
     })
     .then((movie) => {
-      res.status(200).send({ message: "Успешно удалена карточка:", movie });
+      res.status(200).send({ message: 'Успешно удалена карточка:', movie });
     })
     .catch(next);
 };

@@ -1,9 +1,9 @@
-const { celebrate, Joi } = require("celebrate");
-const isUrl = require("validator/lib/isURL");
+const { celebrate, Joi } = require('celebrate');
+const isUrl = require('validator/lib/isURL');
 
 const checkUrl = (url) => {
   if (!isUrl(url, { require_protocol: true })) {
-    throw new Error("Некорректный формат URL");
+    throw new Error('Некорректный формат URL');
   }
   return url;
 };
@@ -15,9 +15,9 @@ const validationMovie = celebrate({
     duration: Joi.number().required(),
     year: Joi.number().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().custom(checkUrl, "Некорректный формат URL"),
-    trailerLink: Joi.string().required().custom(checkUrl, "Некорректный формат URL"),
-    thumbnail: Joi.string().required().custom(checkUrl, "Некорректный формат URL"),
+    image: Joi.string().required().custom(checkUrl, 'Некорректный формат URL'),
+    trailerLink: Joi.string().required().custom(checkUrl, 'Некорректный формат URL'),
+    thumbnail: Joi.string().required().custom(checkUrl, 'Некорректный формат URL'),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),

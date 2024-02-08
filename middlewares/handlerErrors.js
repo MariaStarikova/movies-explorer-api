@@ -1,5 +1,5 @@
 const handlerErrors = (err, req, res, next) => {
-  const { statusCode = 500, message = "На сервере произошла ошибка" } = err;
+  const { statusCode = 500, message = 'На сервере произошла ошибка' } = err;
 
   res
     .status(statusCode)
@@ -10,4 +10,3 @@ const handlerErrors = (err, req, res, next) => {
 };
 
 module.exports = handlerErrors;
-
