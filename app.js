@@ -14,19 +14,17 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(helmet());
 const allowedCors = {
   origin: [
     'http://localhost:3000',
     'http://localhost:3001',
-    'https://api.nomoreparties.co/beatfilm-movies',
-    'https://api.movies.nomoredomainswork.ru/',
     'http://movies.nomoredomainswork.ru/',
     'https://movies.nomoredomainswork.ru/',
   ],
 };
 
 app.use(cors(allowedCors));
+app.use(helmet());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
