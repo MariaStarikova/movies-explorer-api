@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const helmet = require('helmet');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routers = require('./routes/index');
@@ -14,6 +15,15 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(helmet());
+const allowedCors = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://api.nomoreparties.co/beatfilm-movies',
+  ],
+};
+
+app.use(cors(allowedCors));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
