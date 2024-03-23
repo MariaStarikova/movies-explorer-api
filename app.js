@@ -24,6 +24,7 @@ const allowedCors = {
   ],
 };
 
+app.options('*', cors(allowedCors));
 app.use(cors(allowedCors));
 app.use(helmet());
 
