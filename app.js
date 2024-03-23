@@ -21,8 +21,6 @@ const allowedCors = {
     'http://movies.nomoredomainswork.ru',
     'https://movies.nomoredomainswork.ru',
     'https://api.nomoreparties.co/beatfilm-movies',
-    // 'https://api.movies.nomoredomainswork.ru/',
-    // 'http://api.movies.nomoredomainswork.ru/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -31,7 +29,6 @@ const allowedCors = {
   credentials: true,
 };
 
-// app.options('*', cors(allowedCors));
 app.use(cors(allowedCors));
 
 app.use(helmet());
