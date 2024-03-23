@@ -18,8 +18,8 @@ const allowedCors = {
   origin: [
     'http://localhost:3000',
     'http://localhost:3001',
-    'http://movies.nomoredomainswork.ru/',
-    'https://movies.nomoredomainswork.ru/',
+    'http://movies.nomoredomainswork.ru',
+    'https://movies.nomoredomainswork.ru',
     'https://api.nomoreparties.co/beatfilm-movies',
     // 'https://api.movies.nomoredomainswork.ru/',
     // 'http://api.movies.nomoredomainswork.ru/',
