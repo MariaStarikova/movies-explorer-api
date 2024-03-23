@@ -33,6 +33,11 @@ const allowedCors = {
 
 app.options('*', cors(allowedCors));
 app.use(cors(allowedCors));
+
+app.use((req, res, next) => {
+  console.log('incomming', req.headers.origin);
+  next();
+});
 app.use(helmet());
 
 app.use(express.json());
