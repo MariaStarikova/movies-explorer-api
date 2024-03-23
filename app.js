@@ -16,13 +16,13 @@ const app = express();
 
 const allowedCors = {
   origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
+    // 'http://localhost:3000',
+    // 'http://localhost:3001',
     'http://movies.nomoredomainswork.ru/',
     'https://movies.nomoredomainswork.ru/',
     'https://api.nomoreparties.co/beatfilm-movies',
-    'https://api.movies.nomoredomainswork.ru/',
-    'http://api.movies.nomoredomainswork.ru/',
+    // 'https://api.movies.nomoredomainswork.ru/',
+    // 'http://api.movies.nomoredomainswork.ru/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -31,13 +31,9 @@ const allowedCors = {
   credentials: true,
 };
 
-app.options('*', cors(allowedCors));
+// app.options('*', cors(allowedCors));
 app.use(cors(allowedCors));
 
-app.use((req, res, next) => {
-  console.log('incomming', req.headers.origin);
-  next();
-});
 app.use(helmet());
 
 app.use(express.json());
