@@ -16,8 +16,8 @@ const app = express();
 
 const allowedCors = {
   origin: [
-    // 'http://localhost:3000',
-    // 'http://localhost:3001',
+    'http://localhost:3000',
+    'http://localhost:3001',
     'http://movies.nomoredomainswork.ru/',
     'https://movies.nomoredomainswork.ru/',
     'https://api.nomoreparties.co/beatfilm-movies',
