@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const helmet = require('helmet');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routers = require('./routes/index');
@@ -12,6 +13,23 @@ const limiter = require('./middlewares/limiter');
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
+const allowedCors = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://movies.nomoredomainswork.ru',
+    'https://movies.nomoredomainswork.ru',
+    'https://api.nomoreparties.co/beatfilm-movies',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
+
+app.use(cors(allowedCors));
 
 app.use(helmet());
 
